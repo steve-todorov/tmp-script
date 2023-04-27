@@ -1,0 +1,44 @@
+name: script-test
+
+on:
+  pull_request: ~
+  workflow_call: ~
+  workflow_dispatch: ~
+
+jobs:
+
+  script-test:
+    runs-on: ubunut-latest
+
+    # This permission is required to allow writing comments and reporting check status.
+    permissions:
+      actions: read
+      checks: write
+      contents: read
+      issues: write
+      pull-requests: write
+      repository-projects: read
+      statuses: write
+
+    steps:
+    
+      - name: gh script
+        if: always()
+        uses: actions/github-script@v6
+        continue-on-error: true
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const job = (
+                await github.rest.actions.listJobsForWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: context.runId,
+                })
+              ).data.jobs.find((job) => {
+                return job.name === `${context.job} (${modulePath})`;
+              });
+              console.log("Job details:");
+              console.log(job);
+              console.log(`[abc](${job?.html_url}?check_suite_focus=true)`);
+              return `[abc](${job.html_url}?check_suite_focus=true)`;
