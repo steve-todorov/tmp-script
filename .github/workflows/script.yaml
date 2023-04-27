@@ -36,7 +36,7 @@ jobs:
                   run_id: context.runId,
                 })
               ).data.jobs.find((job) => {
-                return job.name === `${context.job} (${modulePath})`;
+                return job.name === `${context.job} (pull_request)`;
               });
               console.log("Job details:");
               console.log(job);
