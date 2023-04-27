@@ -8,7 +8,7 @@ on:
 jobs:
 
   script-test:
-    runs-on: ubunut-latest
+    runs-on: ubuntu-latest
 
     # This permission is required to allow writing comments and reporting check status.
     permissions:
