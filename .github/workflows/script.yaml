@@ -30,6 +30,7 @@ jobs:
       - name: echo
         run: |
           echo "${{ github.job }}"
+          export
 
       - name: gh script
         if: always()
