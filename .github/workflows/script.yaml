@@ -10,6 +10,10 @@ jobs:
   script-test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix: 
+        cs-infra: ["github-action-runners"]
+
     # This permission is required to allow writing comments and reporting check status.
     permissions:
       actions: read
@@ -20,8 +24,13 @@ jobs:
       repository-projects: read
       statuses: write
 
+
     steps:
-    
+
+      - name: echo
+        run: |
+          echo "${{ join(matrix.*, ' - ') }} - ${{ github.event_name }}"
+
       - name: gh script
         if: always()
         uses: actions/github-script@v6
