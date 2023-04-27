@@ -30,6 +30,7 @@ jobs:
       - name: echo
         run: |
           echo "${{ github.job }}"
+          echo "${{ matrix.name }}"
           export
 
       - name: gh script
