@@ -29,7 +29,7 @@ jobs:
 
       - name: echo
         run: |
-          echo "${{ join(matrix.*, ' - ') }} - ${{ github.event_name }}"
+          echo "${{ github.job }}"
 
       - name: gh script
         if: always()
