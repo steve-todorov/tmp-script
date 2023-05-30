@@ -25,7 +25,7 @@ jobs:
     
       - name: Test
         run: |
-          echo "Status: ${{ success() == true && 'hooray' || '-1' }}"
+          echo "Status: ${{ (success()) && 'hooray' || '-1' }}"
     
       - name: gh script
         if: always()
