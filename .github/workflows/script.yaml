@@ -4,6 +4,7 @@ on:
   pull_request: ~
   workflow_call: ~
   workflow_dispatch: ~
+  push: ~
 
 jobs:
 
@@ -21,6 +22,10 @@ jobs:
       statuses: write
 
     steps:
+    
+      - name: Test
+        run: |
+          echo "Status: ${{ success() && 'hooray' || '-1' }}"
     
       - name: gh script
         if: always()
