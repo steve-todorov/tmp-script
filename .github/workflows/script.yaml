@@ -1,5 +1,3 @@
-name: script-test
-
 on: pull_request_target
 
 jobs:
