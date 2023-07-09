@@ -11,15 +11,15 @@ jobs:
   script-test:
     runs-on: ubuntu-latest
 
-    # This permission is required to allow writing comments and reporting check status.
-    permissions:
-      actions: read
-      checks: write
-      contents: read
-      issues: write
-      pull-requests: write
-      repository-projects: read
-      statuses: write
+    # Setting permissions here bypasses the `approve build` step.
+    #permissions:
+    #  actions: read
+    #  checks: write
+    #  contents: read
+    #  issues: write
+    #  pull-requests: write
+    #  repository-projects: read
+    #  statuses: write
 
     steps:
     
