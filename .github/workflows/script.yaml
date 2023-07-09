@@ -4,7 +4,6 @@ on:
   pull_request_target: ~
   workflow_call: ~
   workflow_dispatch: ~
-  push: ~
 
 jobs:
 
@@ -26,24 +25,5 @@ jobs:
       - name: Test
         run: |
           echo "Status: ${{ job.status }} ${{ job.status == 'success' && 'hooray' || '-1' }}"
-    
-      - name: gh script
-        if: always()
-        uses: actions/github-script@v6
-        continue-on-error: true
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const job = (
-                await github.rest.actions.listJobsForWorkflowRun({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  run_id: context.runId,
-                })
-              ).data.jobs.find((job) => {
-                return job.name === `${context.job} (pull_request)`;
-              });
-              console.log("Job details:");
-              console.log(job);
-              console.log(`[abc](${job?.html_url}?check_suite_focus=true)`);
-              return `[abc](${job.html_url}?check_suite_focus=true)`;
+          echo "${{ secrets.ABC }}" | md5sum
+
