@@ -1,7 +1,8 @@
 name: script-test
 
 on:
-  pull_request_target: ~
+  pull_request_target:
+    types: [opened, synchronize]
   workflow_call: ~
   workflow_dispatch: ~
 
