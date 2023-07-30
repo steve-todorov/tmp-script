@@ -29,4 +29,4 @@ jobs:
           echo ${{ github.head_ref }}
           echo ${{ github.ref_name }}
           echo ${{ github.event.number != '' && 'pr number is not empty' || 'pr number is empty' }}
-          echo ${{ github.event.number != '' && '' || (github.head_ref || github.ref_name) }}
+          echo ${{ github.event.number != '' && join([''], '') || (github.head_ref || github.ref_name) }}
