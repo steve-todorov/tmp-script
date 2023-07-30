@@ -24,3 +24,8 @@ jobs:
       - run: printenv ABC
         env:
           ABC: ${{ secrets.ABC }}
+      - run: |
+          echo ${{ github.event.number }}
+          echo ${{ github.head_ref }}
+          echo ${{ github.ref_name }}
+          echo ${{ github.event.number != '' && '' || (github.head_ref || github.ref_name) }}
